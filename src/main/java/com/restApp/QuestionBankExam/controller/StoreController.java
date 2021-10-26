@@ -27,6 +27,7 @@ public class StoreController {
         storeService.initializeCapacity();
         CompletableFuture<Availability> availabilityCompletableFuture=storeService.getAvailability(storeInput.getStoreNo());
         CompletableFuture<Capacity> capacityCompletableFuture=storeService.getCapacity(storeInput.getStoreNo());
+        CompletableFuture.allOf(availabilityCompletableFuture,capacityCompletableFuture);
         String status=storeService.getStatus(storeInput);
         if(status !=null)
         {
